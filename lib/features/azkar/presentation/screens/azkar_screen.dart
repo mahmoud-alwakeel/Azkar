@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../configs/localization/app_localizations.dart';
 import '../../data/datasource/azkar_local_datasource.dart';
 import '../../data/repository/azkar_repository.dart';
 import '../../logic/azkar_cubit.dart';
@@ -10,6 +11,8 @@ class AzkarScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return BlocProvider(
       create: (context) => AzkarCubit(
         repository: AzkarRepository(
@@ -18,9 +21,9 @@ class AzkarScreen extends StatelessWidget {
       )..loadMorningAzkar(),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text(
-            'أذكار الصباح',
-            style: TextStyle(fontWeight: FontWeight.bold),
+          title: Text(
+            l10n.morning_azkar_title,
+            style: const TextStyle(fontWeight: FontWeight.bold),
           ),
           centerTitle: true,
           backgroundColor: Colors.teal,
@@ -32,9 +35,9 @@ class AzkarScreen extends StatelessWidget {
                 if (state is AzkarLoaded) {
                   return IconButton(
                     icon: const Icon(Icons.refresh),
-                    tooltip: 'إعادة تعيين الكل',
+                    tooltip: l10n.reset_all,
                     onPressed: () {
-                      _showResetDialog(context);
+                      _showResetDialog(context, l10n);
                     },
                   );
                 }
@@ -63,7 +66,7 @@ class AzkarScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 16),
                     Text(
-                      'حدث خطأ',
+                      l10n.error_occurred,
                       style: Theme.of(context).textTheme.headlineSmall,
                     ),
                     const SizedBox(height: 8),
@@ -78,7 +81,7 @@ class AzkarScreen extends StatelessWidget {
                         context.read<AzkarCubit>().loadMorningAzkar();
                       },
                       icon: const Icon(Icons.refresh),
-                      label: const Text('إعادة المحاولة'),
+                      label: Text(l10n.retry),
                     ),
                   ],
                 ),
@@ -117,7 +120,7 @@ class AzkarScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 8),
                         Text(
-                          'تم إنجاز $completedCount من $totalCount',
+                          l10n.completed_of(completedCount, totalCount),
                           style: const TextStyle(
                             fontSize: 16,
                             color: Colors.white70,
@@ -148,7 +151,7 @@ class AzkarScreen extends StatelessWidget {
                             context.read<AzkarCubit>().incrementCounter(azkar.id);
                           },
                           onLongPress: () {
-                            _showResetSingleDialog(context, azkar.id);
+                            _showResetSingleDialog(context, azkar.id, l10n);
                           },
                         );
                       },
@@ -158,8 +161,8 @@ class AzkarScreen extends StatelessWidget {
               );
             }
 
-            return const Center(
-              child: Text('لا توجد بيانات'),
+            return Center(
+              child: Text(l10n.no_data),
             );
           },
         ),
@@ -167,24 +170,24 @@ class AzkarScreen extends StatelessWidget {
     );
   }
 
-  void _showResetDialog(BuildContext context) {
+  void _showResetDialog(BuildContext context, AppLocalizations l10n) {
     showDialog(
       context: context,
       builder: (dialogContext) => AlertDialog(
-        title: const Text(
-          'إعادة تعيين الكل',
+        title: Text(
+          l10n.reset_all,
           textAlign: TextAlign.right,
           textDirection: TextDirection.rtl,
         ),
-        content: const Text(
-          'هل تريد إعادة تعيين جميع العدادات؟',
+        content: Text(
+          l10n.reset_all_message,
           textAlign: TextAlign.right,
           textDirection: TextDirection.rtl,
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(dialogContext),
-            child: const Text('إلغاء'),
+            child: Text(l10n.cancel),
           ),
           ElevatedButton(
             onPressed: () {
@@ -195,31 +198,31 @@ class AzkarScreen extends StatelessWidget {
               backgroundColor: Colors.red,
               foregroundColor: Colors.white,
             ),
-            child: const Text('إعادة تعيين'),
+            child: Text(l10n.reset),
           ),
         ],
       ),
     );
   }
 
-  void _showResetSingleDialog(BuildContext context, int azkarId) {
+  void _showResetSingleDialog(BuildContext context, int azkarId, AppLocalizations l10n) {
     showDialog(
       context: context,
       builder: (dialogContext) => AlertDialog(
-        title: const Text(
-          'إعادة تعيين',
+        title: Text(
+          l10n.reset,
           textAlign: TextAlign.right,
           textDirection: TextDirection.rtl,
         ),
-        content: const Text(
-          'هل تريد إعادة تعيين عداد هذا الذكر؟',
+        content: Text(
+          l10n.reset_single_message,
           textAlign: TextAlign.right,
           textDirection: TextDirection.rtl,
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(dialogContext),
-            child: const Text('إلغاء'),
+            child: Text(l10n.cancel),
           ),
           ElevatedButton(
             onPressed: () {
@@ -230,7 +233,7 @@ class AzkarScreen extends StatelessWidget {
               backgroundColor: Colors.orange,
               foregroundColor: Colors.white,
             ),
-            child: const Text('إعادة تعيين'),
+            child: Text(l10n.reset),
           ),
         ],
       ),

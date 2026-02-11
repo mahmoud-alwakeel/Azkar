@@ -1,0 +1,37 @@
+{
+  "@@locale": "en",
+  "app_title": "Azkar",
+  "home_screen_title": "Azkar",
+  "select_azkar_type": "Choose Azkar Type",
+  "morning_azkar": "Morning Azkar",
+  "morning_azkar_description": "Prophetic morning supplications",
+  "evening_azkar": "Evening Azkar",
+  "evening_azkar_description": "Prophetic evening supplications",
+  "coming_soon": "Coming Soon",
+  "reset_all": "Reset All",
+  "reset_all_message": "Do you want to reset all counters?",
+  "reset_single_message": "Do you want to reset this azkar counter?",
+  "cancel": "Cancel",
+  "reset": "Reset",
+  "no_data": "No data available",
+  "error_occurred": "An error occurred",
+  "retry": "Retry",
+  "completed_of": "Completed {completed} of {total}",
+  "@completed_of": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "settings": "Settings",
+  "language": "Language",
+  "change_language": "Change Language",
+  "english": "English",
+  "arabic": "Arabic",
+  "morning_azkar_title": "Morning Azkar",
+  "evening_azkar_title": "Evening Azkar"
+}
