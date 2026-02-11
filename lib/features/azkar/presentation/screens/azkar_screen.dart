@@ -7,22 +7,40 @@ import '../../logic/azkar_cubit.dart';
 import '../widgets/azkar_card.dart';
 
 class AzkarScreen extends StatelessWidget {
-  const AzkarScreen({super.key});
+  final String azkarType;
+
+  const AzkarScreen({super.key, this.azkarType = 'morning'});
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
 
     return BlocProvider(
-      create: (context) => AzkarCubit(
-        repository: AzkarRepository(
-          datasource: AzkarLocalDatasource(),
-        ),
-      )..loadMorningAzkar(),
+      create: (context) {
+        final cubit = AzkarCubit(
+          repository: AzkarRepository(
+            datasource: AzkarLocalDatasource(),
+          ),
+        );
+
+        if (azkarType == 'evening') {
+          cubit.loadEveningAzkar();
+        } else if (azkarType == 'after_prayer') {
+          cubit.loadAfterPrayerAzkar();
+        } else {
+          cubit.loadMorningAzkar();
+        }
+
+        return cubit;
+      },
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            l10n.morning_azkar_title,
+            azkarType == 'evening'
+                ? l10n.evening_azkar
+                : azkarType == 'after_prayer'
+                    ? l10n.after_prayer_azkar
+                    : l10n.morning_azkar,
             style: const TextStyle(fontWeight: FontWeight.bold),
           ),
           centerTitle: true,
@@ -78,7 +96,13 @@ class AzkarScreen extends StatelessWidget {
                     const SizedBox(height: 16),
                     ElevatedButton.icon(
                       onPressed: () {
-                        context.read<AzkarCubit>().loadMorningAzkar();
+                        if (azkarType == 'evening') {
+                          context.read<AzkarCubit>().loadEveningAzkar();
+                        } else if (azkarType == 'after_prayer') {
+                          context.read<AzkarCubit>().loadAfterPrayerAzkar();
+                        } else {
+                          context.read<AzkarCubit>().loadMorningAzkar();
+                        }
                       },
                       icon: const Icon(Icons.refresh),
                       label: Text(l10n.retry),

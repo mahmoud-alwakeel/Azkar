@@ -83,4 +83,11 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get evening_azkar_title => 'أذكار المساء';
+
+  @override
+  String get after_prayer_azkar => 'أذكار بعد الصلاة';
+
+  @override
+  String get after_prayer_azkar_description =>
+      'الأذكار المأثورة عن النبي ﷺ بعد الصلاة';
 }

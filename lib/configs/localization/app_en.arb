@@ -33,5 +33,7 @@
   "english": "English",
   "arabic": "Arabic",
   "morning_azkar_title": "Morning Azkar",
-  "evening_azkar_title": "Evening Azkar"
+  "evening_azkar_title": "Evening Azkar",
+  "after_prayer_azkar": "After Prayer Azkar",
+  "after_prayer_azkar_description": "Prophetic supplications after prayer"
 }

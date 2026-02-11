@@ -23,5 +23,7 @@
   "english": "English",
   "arabic": "العربية",
   "morning_azkar_title": "أذكار الصباح",
-  "evening_azkar_title": "أذكار المساء"
+  "evening_azkar_title": "أذكار المساء",
+  "after_prayer_azkar": "أذكار بعد الصلاة",
+  "after_prayer_azkar_description": "الأذكار المأثورة عن النبي ﷺ بعد الصلاة"
 }

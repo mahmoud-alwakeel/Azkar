@@ -241,6 +241,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Evening Azkar'**
   String get evening_azkar_title;
+
+  /// No description provided for @after_prayer_azkar.
+  ///
+  /// In en, this message translates to:
+  /// **'After Prayer Azkar'**
+  String get after_prayer_azkar;
+
+  /// No description provided for @after_prayer_azkar_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Prophetic supplications after prayer'**
+  String get after_prayer_azkar_description;
 }
 
 class _AppLocalizationsDelegate

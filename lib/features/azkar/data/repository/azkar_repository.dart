@@ -10,6 +10,14 @@ class AzkarRepository {
     return await datasource.loadMorningAzkar();
   }
 
+  Future<AzkarCategoryModel> getEveningAzkar() async {
+    return await datasource.loadEveningAzkar();
+  }
+
+  Future<AzkarCategoryModel> getAfterPrayerAzkar() async {
+    return await datasource.loadAfterPrayerAzkar();
+  }
+
   Future<List<AzkarCategoryModel>> getAllAzkar() async {
     return await datasource.loadAllAzkar();
   }

@@ -81,4 +81,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get evening_azkar_title => 'Evening Azkar';
+
+  @override
+  String get after_prayer_azkar => 'After Prayer Azkar';
+
+  @override
+  String get after_prayer_azkar_description =>
+      'Prophetic supplications after prayer';
 }

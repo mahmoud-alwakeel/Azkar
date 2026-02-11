@@ -77,12 +77,28 @@ class HomeScreen extends StatelessWidget {
                     description: l10n.evening_azkar_description,
                     icon: Icons.nights_stay,
                     color: Colors.indigo,
-                    isComingSoon: true,
                     onTap: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text('${l10n.coming_soon} إن شاء الله'),
-                          duration: const Duration(seconds: 2),
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const AzkarScreen(azkarType: 'evening'),
+                        ),
+                      );
+                    },
+                  ),
+                  const SizedBox(height: 16),
+                  _buildAzkarCategoryCard(
+                    context: context,
+                    l10n: l10n,
+                    title: l10n.after_prayer_azkar,
+                    description: l10n.after_prayer_azkar_description,
+                    icon: Icons.mosque,
+                    color: Colors.green,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const AzkarScreen(azkarType: 'after_prayer'),
                         ),
                       );
                     },
