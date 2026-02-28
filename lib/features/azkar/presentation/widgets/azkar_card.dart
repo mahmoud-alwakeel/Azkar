@@ -38,7 +38,7 @@ class AzkarCard extends StatelessWidget {
             ),
           ),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Align(
                 alignment: Alignment.centerRight,
@@ -64,7 +64,7 @@ class AzkarCard extends StatelessWidget {
                       height: 1.8,
                       fontSize: 18,
                     ),
-                textAlign: TextAlign.right,
+                textAlign: TextAlign.center,
                 textDirection: TextDirection.rtl,
               ),
               const SizedBox(height: 12),
