@@ -40,33 +40,22 @@ class AzkarCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: Text(
-                      azkar.title,
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            fontWeight: FontWeight.bold,
-                            color: isCompleted ? Colors.green : Colors.black87,
-                          ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  decoration: BoxDecoration(
+                    color: isCompleted ? Colors.green : Colors.blue,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Text(
+                    '${azkar.counter} / ${azkar.repeat}',
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                    decoration: BoxDecoration(
-                      color: isCompleted ? Colors.green : Colors.blue,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Text(
-                      '${azkar.counter} / ${azkar.repeat}',
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
               const SizedBox(height: 12),
               Text(
