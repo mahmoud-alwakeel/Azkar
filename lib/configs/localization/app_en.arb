@@ -35,5 +35,7 @@
   "morning_azkar_title": "Morning Azkar",
   "evening_azkar_title": "Evening Azkar",
   "after_prayer_azkar": "After Prayer Azkar",
-  "after_prayer_azkar_description": "Prophetic supplications after prayer"
+  "after_prayer_azkar_description": "Prophetic supplications after prayer",
+  "duaa_from_quran": "Duaa from Quran",
+  "duaa_from_quran_description": "Supplications from the Holy Quran"
 }

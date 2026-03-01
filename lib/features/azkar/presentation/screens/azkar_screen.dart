@@ -27,6 +27,8 @@ class AzkarScreen extends StatelessWidget {
           cubit.loadEveningAzkar();
         } else if (azkarType == 'after_prayer') {
           cubit.loadAfterPrayerAzkar();
+        } else if (azkarType == 'duaa_from_quran') {
+          cubit.loadDuaaFromQuran();
         } else {
           cubit.loadMorningAzkar();
         }
@@ -40,7 +42,9 @@ class AzkarScreen extends StatelessWidget {
                 ? l10n.evening_azkar
                 : azkarType == 'after_prayer'
                     ? l10n.after_prayer_azkar
-                    : l10n.morning_azkar,
+                    : azkarType == 'duaa_from_quran'
+                        ? l10n.duaa_from_quran
+                        : l10n.morning_azkar,
             style: const TextStyle(fontWeight: FontWeight.bold),
           ),
           centerTitle: true,
@@ -48,20 +52,21 @@ class AzkarScreen extends StatelessWidget {
           foregroundColor: Colors.white,
           elevation: 0,
           actions: [
-            BlocBuilder<AzkarCubit, AzkarState>(
-              builder: (context, state) {
-                if (state is AzkarLoaded) {
-                  return IconButton(
-                    icon: const Icon(Icons.refresh),
-                    tooltip: l10n.reset_all,
-                    onPressed: () {
-                      _showResetDialog(context, l10n);
-                    },
-                  );
-                }
-                return const SizedBox.shrink();
-              },
-            ),
+            if (azkarType != 'duaa_from_quran')
+              BlocBuilder<AzkarCubit, AzkarState>(
+                builder: (context, state) {
+                  if (state is AzkarLoaded) {
+                    return IconButton(
+                      icon: const Icon(Icons.refresh),
+                      tooltip: l10n.reset_all,
+                      onPressed: () {
+                        _showResetDialog(context, l10n);
+                      },
+                    );
+                  }
+                  return const SizedBox.shrink();
+                },
+              ),
           ],
         ),
         body: BlocBuilder<AzkarCubit, AzkarState>(
@@ -100,6 +105,8 @@ class AzkarScreen extends StatelessWidget {
                           context.read<AzkarCubit>().loadEveningAzkar();
                         } else if (azkarType == 'after_prayer') {
                           context.read<AzkarCubit>().loadAfterPrayerAzkar();
+                        } else if (azkarType == 'duaa_from_quran') {
+                          context.read<AzkarCubit>().loadDuaaFromQuran();
                         } else {
                           context.read<AzkarCubit>().loadMorningAzkar();
                         }
@@ -114,6 +121,7 @@ class AzkarScreen extends StatelessWidget {
 
             if (state is AzkarLoaded) {
               final azkarList = state.azkarCategory.azkar;
+              final isDuaaFromQuran = azkarType == 'duaa_from_quran';
               final completedCount = azkarList.where((a) => a.counter >= a.repeat).length;
               final totalCount = azkarList.length;
 
@@ -142,24 +150,26 @@ class AzkarScreen extends StatelessWidget {
                             color: Colors.white,
                           ),
                         ),
-                        const SizedBox(height: 8),
-                        Text(
-                          l10n.completed_of(completedCount, totalCount),
-                          style: const TextStyle(
-                            fontSize: 16,
-                            color: Colors.white70,
+                        if (!isDuaaFromQuran) ...[
+                          const SizedBox(height: 8),
+                          Text(
+                            l10n.completed_of(completedCount, totalCount),
+                            style: const TextStyle(
+                              fontSize: 16,
+                              color: Colors.white70,
+                            ),
                           ),
-                        ),
-                        const SizedBox(height: 8),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(8),
-                          child: LinearProgressIndicator(
-                            value: totalCount > 0 ? completedCount / totalCount : 0,
-                            backgroundColor: Colors.white30,
-                            valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
-                            minHeight: 8,
+                          const SizedBox(height: 8),
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(8),
+                            child: LinearProgressIndicator(
+                              value: totalCount > 0 ? completedCount / totalCount : 0,
+                              backgroundColor: Colors.white30,
+                              valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
+                              minHeight: 8,
+                            ),
                           ),
-                        ),
+                        ],
                       ],
                     ),
                   ),
@@ -171,12 +181,15 @@ class AzkarScreen extends StatelessWidget {
                         final azkar = azkarList[index];
                         return AzkarCard(
                           azkar: azkar,
+                          showSource: isDuaaFromQuran,
                           onTap: () {
                             context.read<AzkarCubit>().incrementCounter(azkar.id);
                           },
-                          onLongPress: () {
-                            _showResetSingleDialog(context, azkar.id, l10n);
-                          },
+                          onLongPress: isDuaaFromQuran
+                              ? null
+                              : () {
+                                  _showResetSingleDialog(context, azkar.id, l10n);
+                                },
                         );
                       },
                     ),

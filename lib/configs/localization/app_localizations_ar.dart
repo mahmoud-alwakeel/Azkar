@@ -90,4 +90,10 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get after_prayer_azkar_description =>
       'الأذكار المأثورة عن النبي ﷺ بعد الصلاة';
+
+  @override
+  String get duaa_from_quran => 'دعاء من القرآن الكريم';
+
+  @override
+  String get duaa_from_quran_description => 'أدعية مأثورة من القرآن الكريم';
 }

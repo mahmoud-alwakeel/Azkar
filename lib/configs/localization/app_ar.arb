@@ -25,5 +25,7 @@
   "morning_azkar_title": "أذكار الصباح",
   "evening_azkar_title": "أذكار المساء",
   "after_prayer_azkar": "أذكار بعد الصلاة",
-  "after_prayer_azkar_description": "الأذكار المأثورة عن النبي ﷺ بعد الصلاة"
+  "after_prayer_azkar_description": "الأذكار المأثورة عن النبي ﷺ بعد الصلاة",
+  "duaa_from_quran": "دعاء من القرآن الكريم",
+  "duaa_from_quran_description": "أدعية مأثورة من القرآن الكريم"
 }

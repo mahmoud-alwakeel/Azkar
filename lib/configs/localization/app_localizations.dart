@@ -253,6 +253,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Prophetic supplications after prayer'**
   String get after_prayer_azkar_description;
+
+  /// No description provided for @duaa_from_quran.
+  ///
+  /// In en, this message translates to:
+  /// **'Duaa from Quran'**
+  String get duaa_from_quran;
+
+  /// No description provided for @duaa_from_quran_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Supplications from the Holy Quran'**
+  String get duaa_from_quran_description;
 }
 
 class _AppLocalizationsDelegate

@@ -3,13 +3,15 @@ class AzkarModel {
   final String title;
   final String text;
   final int repeat;
+  final String? source;
   int counter;
 
   AzkarModel({
     required this.id,
     required this.title,
     required this.text,
-    required this.repeat,
+    this.repeat = 1,
+    this.source,
     this.counter = 0,
   });
 
@@ -18,7 +20,8 @@ class AzkarModel {
       id: json['id'] as int,
       title: json['title'] as String,
       text: json['text'] as String,
-      repeat: json['repeat'] as int,
+      repeat: json['repeat'] as int? ?? 1,
+      source: json['source'] as String?,
       counter: json['counter'] as int? ?? 0,
     );
   }
@@ -29,6 +32,7 @@ class AzkarModel {
       'title': title,
       'text': text,
       'repeat': repeat,
+      'source': source,
       'counter': counter,
     };
   }
@@ -38,6 +42,7 @@ class AzkarModel {
     String? title,
     String? text,
     int? repeat,
+    String? source,
     int? counter,
   }) {
     return AzkarModel(
@@ -45,6 +50,7 @@ class AzkarModel {
       title: title ?? this.title,
       text: text ?? this.text,
       repeat: repeat ?? this.repeat,
+      source: source ?? this.source,
       counter: counter ?? this.counter,
     );
   }

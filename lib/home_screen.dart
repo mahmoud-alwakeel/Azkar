@@ -103,6 +103,23 @@ class HomeScreen extends StatelessWidget {
                       );
                     },
                   ),
+                  const SizedBox(height: 16),
+                  _buildAzkarCategoryCard(
+                    context: context,
+                    l10n: l10n,
+                    title: l10n.duaa_from_quran,
+                    description: l10n.duaa_from_quran_description,
+                    icon: Icons.menu_book,
+                    color: Colors.purple,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const AzkarScreen(azkarType: 'duaa_from_quran'),
+                        ),
+                      );
+                    },
+                  ),
                 ],
               ),
             ),

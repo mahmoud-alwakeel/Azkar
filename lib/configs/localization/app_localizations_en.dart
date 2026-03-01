@@ -88,4 +88,10 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get after_prayer_azkar_description =>
       'Prophetic supplications after prayer';
+
+  @override
+  String get duaa_from_quran => 'Duaa from Quran';
+
+  @override
+  String get duaa_from_quran_description => 'Supplications from the Holy Quran';
 }

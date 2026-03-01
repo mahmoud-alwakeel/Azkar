@@ -39,6 +39,16 @@ class AzkarCubit extends Cubit<AzkarState> {
     }
   }
 
+  Future<void> loadDuaaFromQuran() async {
+    try {
+      emit(AzkarLoading());
+      final azkarCategory = await repository.getDuaaFromQuran();
+      emit(AzkarLoaded(azkarCategory: azkarCategory));
+    } catch (e) {
+      emit(AzkarError(message: e.toString()));
+    }
+  }
+
   void incrementCounter(int azkarId) {
     if (state is AzkarLoaded) {
       final currentState = state as AzkarLoaded;

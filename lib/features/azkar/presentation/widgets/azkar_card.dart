@@ -5,16 +5,72 @@ class AzkarCard extends StatelessWidget {
   final AzkarModel azkar;
   final VoidCallback onTap;
   final VoidCallback? onLongPress;
+  final bool showSource;
 
   const AzkarCard({
     super.key,
     required this.azkar,
     required this.onTap,
     this.onLongPress,
+    this.showSource = false,
   });
 
   @override
   Widget build(BuildContext context) {
+    if (showSource) {
+      return Card(
+        elevation: 2,
+        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: Colors.grey.shade300, width: 1),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                azkar.text,
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      height: 1.8,
+                      fontSize: 18,
+                    ),
+                textAlign: TextAlign.center,
+                textDirection: TextDirection.rtl,
+              ),
+              if (azkar.source != null) ...[
+                const SizedBox(height: 12),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                    decoration: BoxDecoration(
+                      color: Colors.teal.shade50,
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(color: Colors.teal.shade200),
+                    ),
+                    child: Text(
+                      azkar.source!,
+                      style: TextStyle(
+                        color: Colors.teal.shade700,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      textDirection: TextDirection.rtl,
+                    ),
+                  ),
+                ),
+              ],
+            ],
+          ),
+        ),
+      );
+    }
+
     final bool isCompleted = azkar.counter >= azkar.repeat;
     final double progress = azkar.repeat > 0 ? azkar.counter / azkar.repeat : 0;
 

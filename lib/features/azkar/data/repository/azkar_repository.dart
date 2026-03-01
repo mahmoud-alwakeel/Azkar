@@ -18,6 +18,10 @@ class AzkarRepository {
     return await datasource.loadAfterPrayerAzkar();
   }
 
+  Future<AzkarCategoryModel> getDuaaFromQuran() async {
+    return await datasource.loadDuaaFromQuran();
+  }
+
   Future<List<AzkarCategoryModel>> getAllAzkar() async {
     return await datasource.loadAllAzkar();
   }

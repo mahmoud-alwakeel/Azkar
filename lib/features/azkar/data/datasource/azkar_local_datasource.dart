@@ -33,6 +33,16 @@ class AzkarLocalDatasource {
     }
   }
 
+  Future<AzkarCategoryModel> loadDuaaFromQuran() async {
+    try {
+      final String jsonString = await rootBundle.loadString('assets/data/duaa_from_quran.json');
+      final Map<String, dynamic> jsonData = json.decode(jsonString);
+      return AzkarCategoryModel.fromJson(jsonData);
+    } catch (e) {
+      throw Exception('Failed to load duaa from quran: $e');
+    }
+  }
+
   Future<List<AzkarCategoryModel>> loadAllAzkar() async {
     final morningAzkar = await loadMorningAzkar();
     final eveningAzkar = await loadEveningAzkar();
