@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
               useMaterial3: true,
-              fontFamily: 'Cairo',
+              fontFamily: state.locale.languageCode == 'ar' ? 'Cairo' : 'Inter',
             ),
             home: const HomeScreen(),
           );
